@@ -1,0 +1,22 @@
+{
+    "items": [
+        {
+            "name": "Item 1",
+            "price": "100",
+            "availability": "In Stock",
+            "imageURL": "1"
+        },
+        {
+            "name": "Item 2",
+            "price": "50",
+            "availability": "Out of Stock",
+            "imageURL": "2"
+        },
+        {
+            "name": "Item 3",
+            "price": "150",
+            "availability": "In Stock",
+            "imageURL": "3"
+        }
+    ]
+}
