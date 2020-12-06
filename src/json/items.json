@@ -1,22 +1,118 @@
 {
     "items": [
         {
-            "name": "Item 1",
+            "name": "Young's Bar B Q Spread",
             "price": "100",
             "availability": "In Stock",
-            "imageURL": "1"
+            "imageURL": "../images/barbq.jpg"
         },
         {
-            "name": "Item 2",
+            "name": "Shan Biryani Masala",
             "price": "50",
             "availability": "Out of Stock",
-            "imageURL": "2"
+            "imageURL": "../images/biryanimasala.jpg"
         },
         {
-            "name": "Item 3",
+            "name": "Blue Band",
             "price": "150",
             "availability": "In Stock",
-            "imageURL": "3"
+            "imageURL": "../images/blueband.jpg"
+        },
+        {
+            "name": "Wonder Bread",
+            "price": "50",
+            "availability": "Out of Stock",
+            "imageURL": "../images/bread.jpg"
+        },
+        {
+            "name": "Young's Chicken Spread",
+            "price": "50",
+            "availability": "In Stock",
+            "imageURL": "../images/chickenspread.jpg"
+        },
+        {
+            "name": "Chocolatto",
+            "price": "50",
+            "availability": "Out of Stock",
+            "imageURL": "../images/chocolatto.jpg"
+        },
+        {
+            "name": "Coca Cola",
+            "price": "50",
+            "availability": "In Stock",
+            "imageURL": "../images/cocacola.jpg"
+        },
+        {
+            "name": "Colgate",
+            "price": "50",
+            "availability": "Out of Stock",
+            "imageURL": "../images/colgate.jpg"
+        },
+        {
+            "name": "Eva Cooking Oil",
+            "price": "50",
+            "availability": "In Stock",
+            "imageURL": "../images/eva.jpg"
+        },
+        {
+            "name": "Every Day",
+            "price": "50",
+            "availability": "In Stock",
+            "imageURL": "../images/everyday.jpg"
+        },
+        {
+            "name": "Nestle Fruita Vitals - Chaunsa",
+            "price": "50",
+            "availability": "Out of Stock",
+            "imageURL": "../images/fruitavitals-chaunsa.jpg"
+        },
+        {
+            "name": "Fruit Gala",
+            "price": "50",
+            "availability": "Out of Stock",
+            "imageURL": "../images/fruitgala.jpeg"
+        },
+        {
+            "name": "Hajmola",
+            "price": "50",
+            "availability": "In Stock",
+            "imageURL": "../images/hajmola.jpg"
+        },
+        {
+            "name": "National Ketchup",
+            "price": "50",
+            "availability": "Out of Stock",
+            "imageURL": "../images/ketchup.jpg"
+        },
+        {
+            "name": "Lay's",
+            "price": "50",
+            "availability": "In Stock",
+            "imageURL": "../images/lays.png"
+        },
+        {
+            "name": "Young's Mayonnaise",
+            "price": "50",
+            "availability": "In Stock",
+            "imageURL": "../images/mayo.jpg"
+        },
+        {
+            "name": "Olpers",
+            "price": "50",
+            "availability": "In Stock",
+            "imageURL": "../images/olpers.png"
+        },
+        {
+            "name": "Pringles",
+            "price": "50",
+            "availability": "Out of Stock",
+            "imageURL": "../images/pringles.jpg"
+        },
+        {
+            "name": "Surf Excel",
+            "price": "50",
+            "availability": "In Stock",
+            "imageURL": "../images/surfexcel.jpg"
         }
     ]
 }
