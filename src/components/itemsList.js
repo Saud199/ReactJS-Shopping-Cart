@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import Items from '../json/items.json';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { AddToReduxCart, IncrementCounter } from '../store/action/action.js';
+import '../css/cartBadge.css';
 
 class ItemsList extends Component {
 
@@ -15,16 +19,32 @@ class ItemsList extends Component {
         this.setState({ searchText: e.target.value });
     }
 
+    addItemToCart(i) {
+        const { products } = this.state;
+
+        var obj = {
+            name: products[i].name,
+            price: products[i].price,
+            imageURL: products[i].imageURL,
+            quantity: 1,
+            total_price: products[i].price
+        }
+        this.props.addItem(obj);
+        var value = this.props.counterValue + 1;
+        this.props.IncCounter(value);
+    }
+
     render() {
         const { products } = this.state;
         return (
             <div>
-                <nav className="navbar navbar-expand-lg fixed-top" style={{ textAlign: 'center', float: 'none', display: 'inline-block' , backgroundColor : '#007BFF'}}>
-                    {/* <img src={Logo} className="card-img-top" style={{width: '300px' , height : '80px'}} alt="Logo" /> */}
-                    <div style={{ float: "right" }}>
-                        <i className="fa" style={{ fontSize: "34px" }}>&#xf07a;</i>
-                        <span className='badge badge-warning' id='lblCartCount'> 0 </span>
-                    </div>
+                <nav className="navbar navbar-expand-lg fixed-top" style={{ textAlign: 'center', float: 'none', display: 'inline-block', backgroundColor: '#007BFF' }}>
+                    <Link to="/cart">
+                        <button style={{ float: "right" , backgroundColor : "transparent" , border : "none"}}>
+                            <i className="fa" style={{ fontSize: "34px" }}>&#xf07a;</i>
+                            <span className='badge badge-warning' id='lblCartCount'> {this.props.counterValue} </span>
+                        </button>
+                    </Link>
                 </nav>
 
                 <br /><br /><br /><br />
@@ -63,7 +83,7 @@ class ItemsList extends Component {
                                             {(val.availability == 'In Stock') &&
                                                 <div>
                                                     <p className="card-text" style={{ color: "green", fontWeight: 'bold' }}>{val.availability}</p>
-                                                    <button type="button" style={{ width: '120px' }} className="btn btn-primary">Add to Cart</button>
+                                                    <button type="button" onClick={() => this.addItemToCart(ind)} style={{ width: '120px' }} className="btn btn-primary">Add to Cart</button>
                                                 </div>}
 
                                             {(val.availability == 'Out of Stock') &&
@@ -82,4 +102,19 @@ class ItemsList extends Component {
     }
 }
 
-export default ItemsList;
+function mapStateToProp(state) {
+    return ({
+        // jb class me data mangwana hota hy store se
+        counterValue: state.root.reduxCartCounter
+    })
+}
+
+function mapDispatchToProp(dispatch) {
+    return ({
+        // jb class se data store me bhejna hota hai
+        addItem: (data) => { dispatch(AddToReduxCart(data)) },
+        IncCounter: (i) => { dispatch(IncrementCounter(i)) }
+    })
+}
+
+export default connect(mapStateToProp, mapDispatchToProp)(ItemsList);
