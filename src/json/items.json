@@ -20,25 +20,25 @@
         },
         {
             "name": "Wonder Bread",
-            "price": "50",
+            "price": "200",
             "availability": "Out of Stock",
             "imageURL": "../images/bread.jpg"
         },
         {
             "name": "Young's Chicken Spread",
-            "price": "50",
+            "price": "20",
             "availability": "In Stock",
             "imageURL": "../images/chickenspread.jpg"
         },
         {
             "name": "Chocolatto",
-            "price": "50",
+            "price": "65",
             "availability": "Out of Stock",
             "imageURL": "../images/chocolatto.jpg"
         },
         {
             "name": "Coca Cola",
-            "price": "50",
+            "price": "30",
             "availability": "In Stock",
             "imageURL": "../images/cocacola.jpg"
         },
@@ -50,67 +50,67 @@
         },
         {
             "name": "Eva Cooking Oil",
-            "price": "50",
+            "price": "350",
             "availability": "In Stock",
             "imageURL": "../images/eva.jpg"
         },
         {
             "name": "Every Day",
-            "price": "50",
+            "price": "650",
             "availability": "In Stock",
             "imageURL": "../images/everyday.jpg"
         },
         {
             "name": "Nestle Fruita Vitals - Chaunsa",
-            "price": "50",
+            "price": "850",
             "availability": "Out of Stock",
             "imageURL": "../images/fruitavitals-chaunsa.jpg"
         },
         {
             "name": "Fruit Gala",
-            "price": "50",
+            "price": "150",
             "availability": "Out of Stock",
             "imageURL": "../images/fruitgala.jpeg"
         },
         {
             "name": "Hajmola",
-            "price": "50",
+            "price": "340",
             "availability": "In Stock",
             "imageURL": "../images/hajmola.jpg"
         },
         {
             "name": "National Ketchup",
-            "price": "50",
+            "price": "85",
             "availability": "Out of Stock",
             "imageURL": "../images/ketchup.jpg"
         },
         {
             "name": "Lay's",
-            "price": "50",
+            "price": "45",
             "availability": "In Stock",
             "imageURL": "../images/lays.png"
         },
         {
             "name": "Young's Mayonnaise",
-            "price": "50",
+            "price": "180",
             "availability": "In Stock",
             "imageURL": "../images/mayo.jpg"
         },
         {
             "name": "Olpers",
-            "price": "50",
+            "price": "280",
             "availability": "In Stock",
             "imageURL": "../images/olpers.png"
         },
         {
             "name": "Pringles",
-            "price": "50",
+            "price": "650",
             "availability": "Out of Stock",
             "imageURL": "../images/pringles.jpg"
         },
         {
             "name": "Surf Excel",
-            "price": "50",
+            "price": "95",
             "availability": "In Stock",
             "imageURL": "../images/surfexcel.jpg"
         }

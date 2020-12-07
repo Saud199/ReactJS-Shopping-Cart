@@ -11,32 +11,6 @@ class ItemsList extends Component {
         }
     }
 
-    componentDidMount() {
-        const { products } = this.state;
-
-        var obj = {
-            name: "Item 4",
-            price: "500",
-            availability: "In Stock",
-            imageURL: "4"
-        }
-        products.push(obj)
-        console.log(products)
-    }
-
-    addData() {
-        const { products } = this.state;
-
-        var obj = {
-            name: "Item 5",
-            price: "500",
-            availability: "In Stock",
-            imageURL: "5"
-        }
-        products.push(obj)
-        console.log(products)
-    }
-
     onChange = e => {
         this.setState({ searchText: e.target.value })
     }
