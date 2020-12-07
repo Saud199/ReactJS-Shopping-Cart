@@ -12,7 +12,7 @@ class ItemsList extends Component {
     }
 
     onChange = e => {
-        this.setState({ searchText: e.target.value })
+        this.setState({ searchText: e.target.value });
     }
 
     render() {
