@@ -5,8 +5,16 @@ import { AddToReduxCart, IncrementCounter } from '../store/action/action.js';
 
 class ShoppingCart extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            grandTotal: 0
+        }
+    }
+
     componentDidMount() {
         console.log(this.props.cartItems);
+        this.calculateGrandTotal();
     }
 
 
@@ -15,10 +23,32 @@ class ShoppingCart extends Component {
         this.props.cartItems.splice(i, 1);
         var value = this.props.counterValue - 1;
         this.props.IncCounter(value);
+        this.calculateGrandTotal();
         console.log(this.props.cartItems);
     }
 
+    plusItem(i) {
+
+    }
+
+
+    minusItem(i)  {
+
+    }
+
+    calculateGrandTotal() {
+        const { grandTotal } = this.state;
+
+        var gt = 0;
+        for (var i = 0 ; i < this.props.cartItems.length ; i++) {
+            //console.log('Hi')
+            gt = gt + parseInt(this.props.cartItems[i].total_price);
+        }
+        this.setState({grandTotal : gt});
+    }
+
     render() {
+        const { grandTotal } = this.state;
         return (
             <div style={{ textAlign: "center" }}>
                 <nav className="navbar navbar-expand-lg d-flex justify-content-start" style={{ textAlign: 'center', float: 'none', display: 'inline-block', backgroundColor: '#007BFF' }}>
@@ -69,14 +99,14 @@ class ShoppingCart extends Component {
                         </table>
                     </div>
 
-                    
+
 
                 </div>
 
                 <br /><br /><br />
-                    <nav className="navbar navbar-expand-lg fixed-bottom" style={{ textAlign: 'center', float: 'none', display: 'inline-block', backgroundColor: '#FFFFFF', borderTop: 'solid 1px black' }}>
-                        <h4>Grand Total : $2500</h4>
-                    </nav>
+                <nav className="navbar navbar-expand-lg fixed-bottom" style={{ textAlign: 'center', float: 'none', display: 'inline-block', backgroundColor: '#FFFFFF', borderTop: 'solid 1px black' }}>
+                    <h4>Grand Total : ${grandTotal}</h4>
+                </nav>
 
             </div>
         );
