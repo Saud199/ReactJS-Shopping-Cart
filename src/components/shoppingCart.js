@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AddToReduxCart, IncrementCounter } from '../store/action/action.js';
 
 class ShoppingCart extends Component {
@@ -24,16 +26,28 @@ class ShoppingCart extends Component {
         this.props.IncCounter(value);
         this.calculateGrandTotal();
         console.log(this.props.cartItems);
+        toast.configure();
+        toast.success("Removed from Cart !" , {
+            position : toast.POSITION.TOP_RIGHT, 
+            autoClose : 1900, 
+            hideProgressBar: true,
+            pauseOnHover: false,
+            draggable: true,
+        });
     }
 
     plusItem(i) {
         this.props.cartItems[i].total_price = (++this.props.cartItems[i].quantity) * this.props.cartItems[i].price;
+        var value = this.props.counterValue + 1;
+        this.props.IncCounter(value);
         this.calculateGrandTotal();
     }
 
 
     minusItem(i) {
         this.props.cartItems[i].total_price = (--this.props.cartItems[i].quantity) * this.props.cartItems[i].price;
+        var value = this.props.counterValue - 1;
+        this.props.IncCounter(value);
         this.calculateGrandTotal();
     }
 
@@ -51,7 +65,7 @@ class ShoppingCart extends Component {
         const { grandTotal } = this.state;
         return (
             <div style={{ textAlign: "center" }}>
-                <nav className="navbar navbar-expand-lg d-flex justify-content-start" style={{ textAlign: 'center', float: 'none', display: 'inline-block', backgroundColor: '#007BFF' }}>
+                <nav className="navbar navbar-expand-lg d-flex justify-content-start animate__animated animate__lightSpeedInRight" style={{ textAlign: 'center', float: 'none', display: 'inline-block', backgroundColor: '#007BFF' }}>
 
                     <Link to="/">
                         <button type="button" className="btn btn-success" style={{ float: "left" }}>Go Back</button>
@@ -79,7 +93,7 @@ class ShoppingCart extends Component {
                             </thead>
                             {this.props.cartItems.map((val, ind) => {
                                 return (
-                                    <tbody key={ind}>
+                                    <tbody key={ind} className="animate__animated animate__backInDown">
                                         <tr>
                                             <th scope="row" style={{ verticalAlign: 'middle' }}>{ind + 1}</th>
                                             <td style={{ verticalAlign: 'middle' }}><img src={val.imageURL} style={{ width: '80px', height: '80px' }} alt="product image" /></td>
@@ -104,7 +118,7 @@ class ShoppingCart extends Component {
                 </div>
 
                 <br /><br /><br />
-                <nav className="navbar navbar-expand-lg fixed-bottom" style={{ textAlign: 'center', float: 'none', display: 'inline-block', backgroundColor: '#FFFFFF', borderTop: 'solid 1px black' }}>
+                <nav className="navbar navbar-expand-lg fixed-bottom animate__animated animate__lightSpeedInLeft" style={{ textAlign: 'center', float: 'none', display: 'inline-block', backgroundColor: '#FFFFFF', borderTop: 'solid 1px black' }}>
                     <h4>Grand Total : ${grandTotal}</h4>
                 </nav>
 

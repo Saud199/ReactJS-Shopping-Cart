@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Items from '../json/items.json';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { AddToReduxCart, IncrementCounter } from '../store/action/action.js';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AddToReduxCart, IncrementCounter, putKeyInCheckArray } from '../store/action/action.js';
 import '../css/cartBadge.css';
 
 class ItemsList extends Component {
@@ -22,25 +24,46 @@ class ItemsList extends Component {
     addItemToCart(i) {
         const { products } = this.state;
 
-        var obj = {
-            name: products[i].name,
-            price: products[i].price,
-            imageURL: products[i].imageURL,
-            quantity: 1,
-            total_price: products[i].price
+        if (this.props.cartCheck.includes(i)) {
+            var cartIndex;
+            for (var j = 0 ; j < this.props.cartItems.length ; j++) {
+                if (this.props.cartItems[j].id === i) {
+                    cartIndex = j;
+                }
+            }
+            this.props.cartItems[cartIndex].total_price = (++this.props.cartItems[cartIndex].quantity) * this.props.cartItems[cartIndex].price;
+        } else {
+            this.props.checkKey(i);
+            var obj = {
+                id : i,
+                name: products[i].name,
+                price: products[i].price,
+                imageURL: products[i].imageURL,
+                quantity: 1,
+                total_price: products[i].price
+            }
+            this.props.addItem(obj);
         }
-        this.props.addItem(obj);
+
         var value = this.props.counterValue + 1;
         this.props.IncCounter(value);
+        toast.configure();
+        toast.success("Added to Cart !" , {
+            position : toast.POSITION.TOP_RIGHT, 
+            autoClose : 1900, 
+            hideProgressBar: true,
+            pauseOnHover: false,
+            draggable: true,
+        });
     }
 
     render() {
         const { products } = this.state;
         return (
             <div>
-                <nav className="navbar navbar-expand-lg fixed-top" style={{ textAlign: 'center', float: 'none', display: 'inline-block', backgroundColor: '#007BFF' }}>
+                <nav className="navbar navbar-expand-lg fixed-top animate__animated animate__zoomInDown" style={{ textAlign: 'center', float: 'none', display: 'inline-block', backgroundColor: '#007BFF' }}>
                     <Link to="/cart">
-                        <button style={{ float: "right" , backgroundColor : "transparent" , border : "none"}}>
+                        <button style={{ float: "right", backgroundColor: "transparent", border: "none" }}>
                             <i className="fa" style={{ fontSize: "34px" }}>&#xf07a;</i>
                             <span className='badge badge-warning' id='lblCartCount'> {this.props.counterValue} </span>
                         </button>
@@ -52,12 +75,12 @@ class ItemsList extends Component {
                 <div className="container">
 
                     <br />
-                    <div className="row" style={{ textAlign: "center" }}>
+                    <div className="row animate__animated animate__lightSpeedInRight" style={{ textAlign: "center" }}>
                         <div className="col-sm-1">
 
                         </div>
                         <div className="col-sm-9">
-                            <input type="text" placeholder="Search Products" onChange={this.onChange} className="form-control animate__animated animate__zoomInDown" style={{ margin: '2px' }} ></input>
+                            <input type="text" placeholder="Search Products" onChange={this.onChange} className="form-control" style={{ margin: '2px' }} ></input>
                         </div>
                     </div>
                     <br />
@@ -72,7 +95,7 @@ class ItemsList extends Component {
                                 }
 
                                 return (
-                                    <div className="card mx-2 my-2 shadow-lg p-3 mb-5 bg-white rounded" key={ind} style={{ width: '345px', alignItems: 'center' }}>
+                                    <div className="card mx-2 my-2 shadow-lg p-3 mb-5 bg-white rounded animate__animated animate__flipInY" key={ind} style={{ width: '345px', alignItems: 'center' }}>
 
                                         {/* src={require('../images/colgate.jpg').default} */}
                                         <img src={val.imageURL} className="card-img-top" style={{ height: '240px', width: '240px' }} alt="product image" />
@@ -105,7 +128,9 @@ class ItemsList extends Component {
 function mapStateToProp(state) {
     return ({
         // jb class me data mangwana hota hy store se
-        counterValue: state.root.reduxCartCounter
+        cartItems: state.root.reduxCart,
+        counterValue: state.root.reduxCartCounter,
+        cartCheck : state.root.cartChecker
     })
 }
 
@@ -113,7 +138,8 @@ function mapDispatchToProp(dispatch) {
     return ({
         // jb class se data store me bhejna hota hai
         addItem: (data) => { dispatch(AddToReduxCart(data)) },
-        IncCounter: (i) => { dispatch(IncrementCounter(i)) }
+        IncCounter: (i) => { dispatch(IncrementCounter(i)) },
+        checkKey : (key) => { dispatch(putKeyInCheckArray(key)) },
     })
 }
 

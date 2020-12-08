@@ -4,6 +4,12 @@ export function AddToReduxCart(item) {
     }
 }
 
+export function putKeyInCheckArray(key) {
+    return dispatch => {
+        dispatch({ type: 'ADDITEMKEY', payload: key  })
+    }
+}
+
 export function IncrementCounter(i) {
     return dispatch => {
         dispatch({ type: 'ADDCOUNTER', payload: i  })
