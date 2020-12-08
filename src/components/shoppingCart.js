@@ -8,7 +8,7 @@ class ShoppingCart extends Component {
     constructor() {
         super();
         this.state = {
-            grandTotal: 0
+            grandTotal: 0,
         }
     }
 
@@ -19,7 +19,6 @@ class ShoppingCart extends Component {
 
 
     removeItem(i) {
-        //console.log(this.props.cartItems);
         this.props.cartItems.splice(i, 1);
         var value = this.props.counterValue - 1;
         this.props.IncCounter(value);
@@ -28,23 +27,24 @@ class ShoppingCart extends Component {
     }
 
     plusItem(i) {
-
+        this.props.cartItems[i].total_price = (++this.props.cartItems[i].quantity) * this.props.cartItems[i].price;
+        this.calculateGrandTotal();
     }
 
 
-    minusItem(i)  {
-
+    minusItem(i) {
+        this.props.cartItems[i].total_price = (--this.props.cartItems[i].quantity) * this.props.cartItems[i].price;
+        this.calculateGrandTotal();
     }
 
     calculateGrandTotal() {
         const { grandTotal } = this.state;
 
         var gt = 0;
-        for (var i = 0 ; i < this.props.cartItems.length ; i++) {
-            //console.log('Hi')
+        for (var i = 0; i < this.props.cartItems.length; i++) {
             gt = gt + parseInt(this.props.cartItems[i].total_price);
         }
-        this.setState({grandTotal : gt});
+        this.setState({ grandTotal: gt });
     }
 
     render() {
@@ -85,9 +85,9 @@ class ShoppingCart extends Component {
                                             <td style={{ verticalAlign: 'middle' }}><img src={val.imageURL} style={{ width: '80px', height: '80px' }} alt="product image" /></td>
                                             <td style={{ verticalAlign: 'middle' }}>{val.name}</td>
                                             <td style={{ verticalAlign: 'middle' }}>
-                                                <button type="button" style={{ marginRight: '5px', width: '40px' }} className="btn btn-light"><b>-</b></button>
+                                                <button type="button" onClick={() => this.minusItem(ind)} style={{ marginRight: '5px', width: '40px' }} className="btn btn-light"><b>-</b></button>
                                                 {val.quantity}
-                                                <button type="button" style={{ marginLeft: '5px', width: '40px' }} className="btn btn-light"><b>+</b></button>
+                                                <button type="button" onClick={() => this.plusItem(ind)} style={{ marginLeft: '5px', width: '40px' }} className="btn btn-light"><b>+</b></button>
                                             </td>
                                             <td style={{ verticalAlign: 'middle' }}>${val.price}</td>
                                             <td style={{ verticalAlign: 'middle' }}>${val.total_price}</td>
