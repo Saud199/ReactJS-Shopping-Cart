@@ -26,7 +26,7 @@ class ItemsList extends Component {
 
         if (this.props.cartCheck.includes(i)) {
             var cartIndex;
-            for (var j = 0 ; j < this.props.cartItems.length ; j++) {
+            for (var j = 0; j < this.props.cartItems.length; j++) {
                 if (this.props.cartItems[j].id === i) {
                     cartIndex = j;
                 }
@@ -35,7 +35,7 @@ class ItemsList extends Component {
         } else {
             this.props.checkKey(i);
             var obj = {
-                id : i,
+                id: i,
                 name: products[i].name,
                 price: products[i].price,
                 imageURL: products[i].imageURL,
@@ -48,9 +48,9 @@ class ItemsList extends Component {
         var value = this.props.counterValue + 1;
         this.props.IncCounter(value);
         toast.configure();
-        toast.success("Added to Cart !" , {
-            position : toast.POSITION.TOP_RIGHT, 
-            autoClose : 1900, 
+        toast.success("Added to Cart !", {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 1900,
             hideProgressBar: true,
             pauseOnHover: false,
             draggable: true,
@@ -130,7 +130,7 @@ function mapStateToProp(state) {
         // jb class me data mangwana hota hy store se
         cartItems: state.root.reduxCart,
         counterValue: state.root.reduxCartCounter,
-        cartCheck : state.root.cartChecker
+        cartCheck: state.root.cartChecker
     })
 }
 
@@ -139,7 +139,7 @@ function mapDispatchToProp(dispatch) {
         // jb class se data store me bhejna hota hai
         addItem: (data) => { dispatch(AddToReduxCart(data)) },
         IncCounter: (i) => { dispatch(IncrementCounter(i)) },
-        checkKey : (key) => { dispatch(putKeyInCheckArray(key)) },
+        checkKey: (key) => { dispatch(putKeyInCheckArray(key)) },
     })
 }
 

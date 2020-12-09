@@ -15,21 +15,22 @@ class ShoppingCart extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.cartItems);
         this.calculateGrandTotal();
     }
 
 
     removeItem(i) {
+        var noOfItemsToRemove = this.props.cartItems[i].quantity;
         this.props.cartItems.splice(i, 1);
-        var value = this.props.counterValue - 1;
+        this.props.cartCheck.splice(i, 1);
+        var value = this.props.counterValue - noOfItemsToRemove;
         this.props.IncCounter(value);
         this.calculateGrandTotal();
         console.log(this.props.cartItems);
         toast.configure();
-        toast.success("Removed from Cart !" , {
-            position : toast.POSITION.TOP_RIGHT, 
-            autoClose : 1900, 
+        toast.success("Removed from Cart !", {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 1900,
             hideProgressBar: true,
             pauseOnHover: false,
             draggable: true,
@@ -45,10 +46,12 @@ class ShoppingCart extends Component {
 
 
     minusItem(i) {
-        this.props.cartItems[i].total_price = (--this.props.cartItems[i].quantity) * this.props.cartItems[i].price;
-        var value = this.props.counterValue - 1;
-        this.props.IncCounter(value);
-        this.calculateGrandTotal();
+        if (this.props.cartItems[i].quantity > 1) {
+            this.props.cartItems[i].total_price = (--this.props.cartItems[i].quantity) * this.props.cartItems[i].price;
+            var value = this.props.counterValue - 1;
+            this.props.IncCounter(value);
+            this.calculateGrandTotal();
+        }
     }
 
     calculateGrandTotal() {
@@ -82,12 +85,12 @@ class ShoppingCart extends Component {
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Item</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Unit Price</th>
-                                    <th scope="col">Total Price</th>
+                                    <th scope="col" style={{ verticalAlign: 'middle' }}>#</th>
+                                    <th scope="col" style={{ verticalAlign: 'middle' }}>Item</th>
+                                    <th scope="col" style={{ verticalAlign: 'middle' }}>Name</th>
+                                    <th scope="col" style={{ verticalAlign: 'middle' }}>Quantity</th>
+                                    <th scope="col" style={{ verticalAlign: 'middle' }}>Unit Price</th>
+                                    <th scope="col" style={{ verticalAlign: 'middle' }}>Total Price</th>
                                     <th scope="col"> </th>
                                 </tr>
                             </thead>
@@ -131,7 +134,8 @@ function mapStateToProp(state) {
     return ({
         // jb class me data mangwana hota hy store se
         cartItems: state.root.reduxCart,
-        counterValue: state.root.reduxCartCounter
+        counterValue: state.root.reduxCartCounter,
+        cartCheck: state.root.cartChecker
     })
 }
 
