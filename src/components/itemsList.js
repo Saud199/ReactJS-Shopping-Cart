@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AddToReduxCart, IncrementCounter, putKeyInCheckArray } from '../store/action/action.js';
 import '../css/cartBadge.css';
+import '../css/loading.css';
 
 class ItemsList extends Component {
 
@@ -57,10 +58,17 @@ class ItemsList extends Component {
         });
     }
 
+    hideLoader() {
+        var preloader =  document.getElementById("loading");
+        preloader.style.display = "none";
+    }
+
     render() {
         const { products } = this.state;
         return (
-            <div>
+            <div onLoad={() => this.hideLoader()}>
+                <div id="loading"></div>
+
                 <nav className="navbar navbar-expand-lg fixed-top animate__animated animate__zoomInDown" style={{ textAlign: 'center', float: 'none', display: 'inline-block', backgroundColor: '#007BFF' }}>
                     <Link to="/cart">
                         <button style={{ float: "right", backgroundColor: "transparent", border: "none" }}>
