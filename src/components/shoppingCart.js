@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AddToReduxCart, IncrementCounter } from '../store/action/action.js';
-import '../css/loading.css';
 
 class ShoppingCart extends Component {
 
@@ -65,15 +64,11 @@ class ShoppingCart extends Component {
         this.setState({ grandTotal: gt });
     }
 
-    hideLoader() {
-        var preloader =  document.getElementById("loading");
-        preloader.style.display = "none";
-    }
-
     render() {
         const { grandTotal } = this.state;
         return (
-            <div onLoad={() => this.hideLoader()} style={{ textAlign: "center" }}>
+            <div style={{ textAlign: "center" }}>
+
                 <nav className="navbar navbar-expand-lg d-flex justify-content-start animate__animated animate__lightSpeedInRight" style={{ textAlign: 'center', float: 'none', display: 'inline-block', backgroundColor: '#007BFF' }}>
 
                     <Link to="/">
