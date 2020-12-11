@@ -26,7 +26,6 @@ class ShoppingCart extends Component {
         var value = this.props.counterValue - noOfItemsToRemove;
         this.props.IncCounter(value);
         this.calculateGrandTotal();
-        console.log(this.props.cartItems);
         toast.configure();
         toast.success("Removed from Cart !", {
             position: toast.POSITION.TOP_RIGHT,
