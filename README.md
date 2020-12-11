@@ -1,6 +1,6 @@
 # ReactJS-Shopping-Cart
 
-Add to Cart Functionality using ReactJS & Redux
+Add to Cart Functionality using ReactJS & Redux ( Persist )
 
 
 
